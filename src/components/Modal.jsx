@@ -3,8 +3,9 @@ import { createPortal } from "react-dom";
 import Button from "./Button";
 
 const Modal = forwardRef(function Modal({ children, buttonCaption }, ref) {
-    const dialog = useRef();
+    // expose open function as api and show the modal component in virtual dom in root-modal div through createPortal
 
+    const dialog = useRef();
     useImperativeHandle(ref, () => {
         return {
             open() {

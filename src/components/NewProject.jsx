@@ -13,6 +13,7 @@ export default function NewProject({ onCancel, onSave }) {
         const enteredDescription = description.current.value;
         const enteredDueDate = dueDate.current.value;
 
+        // validation of inputs
         if (
             enteredTitle.trim().length === 0 ||
             enteredDescription.trim().length === 0 ||
@@ -33,6 +34,7 @@ export default function NewProject({ onCancel, onSave }) {
 
     return (
         <>
+            {/* modal is always present in NewProject component but visible when showModal() is called using open() on invalid input*/}
             <Modal ref={modal} buttonCaption="Okay">
                 <h2 className="text-xl font-bold text-stone-700 my-4">
                     Invalid Input

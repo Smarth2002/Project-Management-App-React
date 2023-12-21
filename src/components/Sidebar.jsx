@@ -19,6 +19,7 @@ export default function Sidebar({
                     let classes =
                         "w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800";
 
+                    // highlight currently selected project using its project id
                     if (project.id === selectedProjectId)
                         classes += " bg-stone-800 text-stone-200";
                     else classes += " text-stone-400";

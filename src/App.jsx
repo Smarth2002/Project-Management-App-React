@@ -5,11 +5,13 @@ import NewProject from "./components/NewProject";
 import SelectedProject from "./components/SelectedProject";
 
 function App() {
-    // undefined => no project selected, null => add new project, id => selected project id
+
+    // managing projects array state and selectedProject state together as a single object 
     const [projectsState, setProjectsState] = useState({
-        selectedProjectId: undefined,
-        projects: [],
-        tasks: [],
+        // undefined => no project selected, null => add new project, id => selected project id
+        selectedProjectId: undefined, // content to display in main page along with sidebar
+        projects: [], // stores projects in form of array of obj
+        tasks: [], // stores tasks in form of array of objects
     });
 
     function handleAddProject() {
@@ -69,9 +71,10 @@ function App() {
 
     function handleAddTask(task) {
         setProjectsState((prevProjectsState) => {
+            // mapping each task to its project using project ID
             const newTask = {
                 id: Math.random(),
-                projectId: prevProjectsState.selectedProjectId,
+                projectId: prevProjectsState.selectedProjectId, 
                 text: task,
             };
 
@@ -93,10 +96,12 @@ function App() {
         });
     }
 
+    // find the currently selected project from projects array to display it
     const selectedProject = projectsState.projects.find(
         (project) => project.id === projectsState.selectedProjectId
     );
 
+    // filter tasks of currently selected project using projectId of each task and selectedProjectId 
     const projectTasks = projectsState.tasks.filter(
         (task) => task.projectId === projectsState.selectedProjectId
     );

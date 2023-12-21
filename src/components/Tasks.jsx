@@ -1,4 +1,3 @@
-import Input from "./Input";
 import NewTask from "./NewTask";
 
 export default function Tasks({ tasks, onAdd, onDelete }) {
