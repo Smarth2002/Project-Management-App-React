@@ -6,6 +6,9 @@ import SelectedProject from "./components/SelectedProject";
 
 function App() {
 
+    // we need states for projects array, showInputForm, selectedProject
+    // we merge showInputForm and selectedProject to a single state
+
     // managing projects array state and selectedProject state together as a single object 
     const [projectsState, setProjectsState] = useState({
         // undefined => no project selected, null => add new project, id => selected project id
