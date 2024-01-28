@@ -5,11 +5,10 @@ import NewProject from "./components/NewProject";
 import SelectedProject from "./components/SelectedProject";
 
 function App() {
-
     // we need states for projects array, showInputForm, selectedProject
     // we merge showInputForm and selectedProject to a single state
 
-    // managing projects array state and selectedProject state together as a single object 
+    // managing projects array state and selectedProject state together as a single object
     const [projectsState, setProjectsState] = useState({
         // undefined => no project selected, null => add new project, id => selected project id
         selectedProjectId: undefined, // content to display in main page along with sidebar
@@ -63,11 +62,20 @@ function App() {
         setProjectsState((prevProjectsState) => {
             return {
                 ...prevProjectsState,
+
+                // deleting currently selected project from projects []
                 projects: prevProjectsState.projects.filter(
                     (project) =>
                         project.id !== prevProjectsState.selectedProjectId
                 ),
+
                 selectedProjectId: undefined,
+
+                // deleting all tasks pointing/mapped to currently selected project (to be deleted)
+                tasks: prevProjectsState.tasks.filter(
+                    (task) =>
+                        task.projectId !== prevProjectsState.selectedProjectId
+                ),
             };
         });
     }
@@ -77,7 +85,7 @@ function App() {
             // mapping each task to its project using project ID
             const newTask = {
                 id: Math.random(),
-                projectId: prevProjectsState.selectedProjectId, 
+                projectId: prevProjectsState.selectedProjectId,
                 text: task,
             };
 
@@ -104,7 +112,7 @@ function App() {
         (project) => project.id === projectsState.selectedProjectId
     );
 
-    // filter tasks of currently selected project using projectId of each task and selectedProjectId 
+    // filter tasks of currently selected project using projectId of each task and selectedProjectId
     const projectTasks = projectsState.tasks.filter(
         (task) => task.projectId === projectsState.selectedProjectId
     );
